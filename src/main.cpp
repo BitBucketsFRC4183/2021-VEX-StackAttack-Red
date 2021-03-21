@@ -45,11 +45,11 @@ void driveRobot() {
 void turnRobot() {
   if (Controller1.Axis4.position(percent) >= DEADBAND_F) {
     Drivetrain.setTurnVelocity(Controller1.Axis4.position(percent) * JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
-    Drivetrain.turn(left);
+    Drivetrain.turn(right);
 
   } else if (Controller1.Axis4.position(percent) <= -DEADBAND_F) {
     Drivetrain.setTurnVelocity(Controller1.Axis4.position(percent) * -JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
-    Drivetrain.turn(right);
+    Drivetrain.turn(left);
 
   } else {
     Drivetrain.stop();
