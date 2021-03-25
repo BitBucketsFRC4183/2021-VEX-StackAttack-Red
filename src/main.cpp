@@ -21,6 +21,7 @@
 
 using namespace vex;
 
+competition Competition;
 float DEADBAND_F = 10.0f;
 float JOYSTICK_PERCENTAGE_CONVERSION_F = 1.0f;
 float CLAW_OPEN_DEG = 45.0f;
@@ -74,9 +75,18 @@ void toggleClaw() {
   }
 }
 
-int main() {
-  // Initializing Robot Configuration. DO NOT REMOVE!
-  vexcodeInit();
+void auton()
+{
+  Drivetrain.setDriveVelocity(25,percent);
+  Drivetrain.drive(forward);
+  wait(1, seconds);
+  Drivetrain.drive(reverse);
+  wait(1, seconds);
+  Drivetrain.stop();
+}
+
+void manual()
+{
   Controller1.Axis2.changed(moveArm);
   Controller1.Axis3.changed(driveRobot);
   Controller1.Axis4.changed(turnRobot);
