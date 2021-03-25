@@ -91,6 +91,13 @@ void manual()
   Controller1.Axis3.changed(driveRobot);
   Controller1.Axis4.changed(turnRobot);
   Controller1.ButtonA.pressed(toggleClaw);
+}
+
+int main() {
+// Initializing Robot Configuration. DO NOT REMOVE!
+  vexcodeInit();
+  Competition.autonomous(auton);
+  Competition.drivercontrol(manual);
   while(true){
     wait(0.1, seconds);
   }
