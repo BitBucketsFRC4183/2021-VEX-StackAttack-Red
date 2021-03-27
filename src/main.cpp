@@ -47,6 +47,7 @@
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
+#include <iostream>
 
 using namespace vex;
 
@@ -96,7 +97,11 @@ void moveArm() {
 }
 
 void useIntake() {
+  std::cout << Controller1.Axis1.position(percent) << std::endl;
+  
   if (Controller1.Axis1.position(percent) >= DEADBAND_F) {
+    std::cout << "axis1 > deadband" << std::endl;
+
     IntakeMotor0.setVelocity(Controller1.Axis1.position(percent) * JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
     IntakeMotor0.spin(forward);
 
@@ -104,6 +109,8 @@ void useIntake() {
     IntakeMotor1.spin(reverse);
 
   } else if (Controller1.Axis1.position(percent) <= -DEADBAND_F) {
+    std::cout << "axis1 < deadband" << std::endl;
+
     IntakeMotor0.setVelocity(Controller1.Axis1.position(percent) * -JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
     IntakeMotor0.spin(reverse);
 
@@ -111,6 +118,8 @@ void useIntake() {
     IntakeMotor1.spin(forward);
 
   } else {
+    std::cout << "axis1 is within deadband" << std::endl;
+
     IntakeMotor0.stop();
   }
 }
