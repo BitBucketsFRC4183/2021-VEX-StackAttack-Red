@@ -1,3 +1,32 @@
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Vision5              vision        5               
+// Drivetrain           drivetrain    10, 1           
+// ArmMotor             motor         8               
+// IntakeMotor0         motor         11              
+// IntakeMotor1         motor         12              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Vision5              vision        5               
+// Drivetrain           drivetrain    10, 1           
+// ArmMotor             motor         8               
+// IntakeMotor0         motor         3               
+// IntakeMotor1         motor         12              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Vision5              vision        5               
+// Drivetrain           drivetrain    10, 1           
+// ArmMotor             motor         8               
+// IntakeMotor0         motor         3               
+// ---- END VEXCODE CONFIGURED DEVICES ----
 /*----------------------------------------------------------------------------*/
 /*                                                                            */
 /*    Module:       main.cpp                                                  */
@@ -63,15 +92,26 @@ void moveArm() {
 
   } else if (Controller1.Axis2.position(percent) <= -DEADBAND_F) {
     ArmMotor.spinToPosition(ArmMotor.position(degrees) + (Controller1.Axis2.position(percent) *  armSpeed), degrees);
-
   }
 }
 
-void toggleClaw() {
-  if(clawOpen) {
-    ClawMotor.spinToPosition(CLAW_OPEN_DEG, degrees);
+void useIntake() {
+  if (Controller1.Axis1.position(percent) >= DEADBAND_F) {
+    IntakeMotor0.setVelocity(Controller1.Axis1.position(percent) * JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
+    IntakeMotor0.spin(forward);
+
+    IntakeMotor1.setVelocity(Controller1.Axis1.position(percent) * JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
+    IntakeMotor1.spin(reverse);
+
+  } else if (Controller1.Axis1.position(percent) <= -DEADBAND_F) {
+    IntakeMotor0.setVelocity(Controller1.Axis1.position(percent) * -JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
+    IntakeMotor0.spin(reverse);
+
+    IntakeMotor1.setVelocity(Controller1.Axis1.position(percent) * -JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
+    IntakeMotor1.spin(forward);
+
   } else {
-    ClawMotor.spinToPosition(0, degrees);
+    IntakeMotor0.stop();
   }
 }
 
@@ -90,7 +130,7 @@ void manual()
   Controller1.Axis2.changed(moveArm);
   Controller1.Axis3.changed(driveRobot);
   Controller1.Axis4.changed(turnRobot);
-  Controller1.ButtonA.pressed(toggleClaw);
+  Controller1.Axis1.changed(useIntake);
 }
 
 int main() {

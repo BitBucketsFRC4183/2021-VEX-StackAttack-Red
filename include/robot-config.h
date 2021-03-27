@@ -16,7 +16,8 @@ extern signature Vision5__SIG_7;
 extern vision Vision5;
 extern drivetrain Drivetrain;
 extern motor ArmMotor;
-extern motor ClawMotor;
+extern motor IntakeMotor0;
+extern motor IntakeMotor1;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
