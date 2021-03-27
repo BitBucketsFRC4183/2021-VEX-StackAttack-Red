@@ -98,7 +98,7 @@ void moveArm() {
 
 void useIntake() {
   std::cout << Controller1.Axis1.position(percent) << std::endl;
-  
+
   if (Controller1.Axis1.position(percent) >= DEADBAND_F) {
     std::cout << "axis1 > deadband" << std::endl;
 
@@ -121,6 +121,7 @@ void useIntake() {
     std::cout << "axis1 is within deadband" << std::endl;
 
     IntakeMotor0.stop();
+    IntakeMotor1.stop();
   }
 }
 
