@@ -133,6 +133,31 @@ void auton()
   Drivetrain.drive(reverse);
   wait(1, seconds);
   Drivetrain.stop();
+  //Take out recyclingstuff (here once I test code)
+
+  //Set the table
+
+  //Walk the dog
+
+}
+
+
+
+void WalkTheDog_TakeOutTheRecycling_TEST()
+{
+  //assume starting cube is in the middle of the eastern side of HOME, directly across recycling can (maybe one inch above recycling can sqaure?)
+  //assume robot is directly to the west of the starting cube (and facing starting cube)
+  
+  Drivetrain.driveFor(forward, 40, inches);
+  //should get starting cube in recycling can, completing TAKE OUT THE RECYCLING
+  Drivetrain.turnFor(right,90,degrees);
+  Drivetrain.driveFor(forward, 24, inches);
+  Drivetrain.turnFor(right, 90, degrees);
+  Drivetrain.driveFor(forward, 48, inches);
+  //need to somehow do set the table here
+  Drivetrain.turnFor(right, 90, degrees);
+  Drivetrain.driveFor(forward, 12, inches);
+  //should complete GET HOME FOR DINNER
 }
 
 void manual()
