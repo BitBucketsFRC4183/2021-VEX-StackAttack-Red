@@ -52,17 +52,25 @@
 using namespace vex;
 
 competition Competition;
+
+// The minimum distance the joystick must be from its center for the code to register it as pressed.
 float DEADBAND_F = 10.0f;
+
+// The value the joystick outputs is multiplied by this number to ensure it is on a scale of 0-100.
 float JOYSTICK_PERCENTAGE_CONVERSION_F = 1.0f;
 float armSpeed = 0.5f;
 
 
 void driveRobot() {
+  // If the left joystick is pushed forward...
   if (Controller1.Axis3.position(percent) >= DEADBAND_F) {
+    // Drive the robot forward.
     Drivetrain.setDriveVelocity(Controller1.Axis3.position(percent) * JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
     Drivetrain.drive(forward);
 
+  // If the left joystick is pushed backward...
   } else if (Controller1.Axis3.position(percent) <= -DEADBAND_F) {
+    // Drive the robot backward.
     Drivetrain.setDriveVelocity(Controller1.Axis3.position(percent) * -JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
     Drivetrain.drive(reverse);
 
@@ -72,11 +80,15 @@ void driveRobot() {
 }
 
 void turnRobot() {
+  // If the left joystick is pushed right...
   if (Controller1.Axis4.position(percent) >= DEADBAND_F) {
+    // Turn the robot right.
     Drivetrain.setTurnVelocity(Controller1.Axis4.position(percent) * JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
     Drivetrain.turn(right);
 
+  // If the left joystick is pushed left...
   } else if (Controller1.Axis4.position(percent) <= -DEADBAND_F) {
+    // Turn the robot left.
     Drivetrain.setTurnVelocity(Controller1.Axis4.position(percent) * -JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
     Drivetrain.turn(left);
 
