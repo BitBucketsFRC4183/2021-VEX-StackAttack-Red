@@ -54,9 +54,7 @@ using namespace vex;
 competition Competition;
 float DEADBAND_F = 10.0f;
 float JOYSTICK_PERCENTAGE_CONVERSION_F = 1.0f;
-float CLAW_OPEN_DEG = 45.0f;
 float armSpeed = 0.5f;
-bool clawOpen = false;
 
 
 void driveRobot() {
