@@ -47,6 +47,7 @@
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
+#include "vision-config.h"
 #include <iostream>
 
 using namespace vex;
