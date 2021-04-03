@@ -164,10 +164,15 @@ void WalkTheDog_TakeOutTheRecycling_TEST()
   Drivetrain.driveFor(forward, 24, inches);
   Drivetrain.turnFor(right, 90, degrees);
   Drivetrain.driveFor(forward, 48, inches);
-  //need to somehow do set the table here
+  //set the table here, need vision sensors planning to do some if-statements if possible
   Drivetrain.turnFor(right, 90, degrees);
   Drivetrain.driveFor(forward, 12, inches);
   //should complete GET HOME FOR DINNER
+}
+
+void SetTheTable()
+{
+    
 }
 
 void manual()
