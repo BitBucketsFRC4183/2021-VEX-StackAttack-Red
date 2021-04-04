@@ -195,12 +195,17 @@ int main() {
 // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
   //Competition.autonomous(auton);
-  Competition.drivercontrol(manual);
-  // while(true){
-  //   wait(0.1, seconds);
-  // } 
-   if (Green())
-  {
-    Drivetrain.driveFor(5, inches);
-  }
+  //Competition.drivercontrol(manual);
+  while(true){
+    wait(0.01, seconds);
+    if (Green())
+    {
+      Drivetrain.driveFor(5, inches);
+    }
+    else
+    {
+      Drivetrain.stop();
+    }
+  } 
+   
 }
