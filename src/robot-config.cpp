@@ -9,9 +9,6 @@ brain  Brain;
 
 // VEXcode device constructors
 controller Controller1 = controller(primary);
-/*vex-vision-config:begin*/
-vision Vision13 = vision (PORT13, 50);
-/*vex-vision-config:end*/
 motor LeftDriveSmart = motor(PORT10, ratio18_1, false);
 motor RightDriveSmart = motor(PORT1, ratio18_1, true);
 drivetrain Drivetrain = drivetrain(LeftDriveSmart, RightDriveSmart, 319.19, 295, 40, mm, 1);
