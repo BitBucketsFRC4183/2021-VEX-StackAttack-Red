@@ -196,12 +196,11 @@ int main() {
   vexcodeInit();
   //Competition.autonomous(auton);
   Competition.drivercontrol(manual);
-  while(true){
-    wait(0.1, seconds);
-    if (Green())
-    {
-      Drivetrain.driveFor(5, inches);
-    }
-  } 
-  
+  // while(true){
+  //   wait(0.1, seconds);
+  // } 
+   if (Green())
+  {
+    Drivetrain.driveFor(5, inches);
+  }
 }
