@@ -48,7 +48,6 @@
 
 #include "vex.h"
 #include "vision-config.h"
-//#include "robot-config.h"
 #include <iostream>
 
 using namespace vex;
