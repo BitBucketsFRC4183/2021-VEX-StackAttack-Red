@@ -136,6 +136,13 @@ void useIntake() {
   }
 }
 
+bool Green()
+{
+  Vision13.takeSnapshot(Vision13__SIG_1);
+  bool isGreen = Vision13.objects[0].exists;
+  return isGreen;
+}
+
 void auton()
 {
   Drivetrain.setDriveVelocity(25,percent);
@@ -147,11 +154,11 @@ void auton()
   //Take out recyclingstuff (here once I test code)
 
   //Set the table
+ 
 
   //Walk the dog
 
 }
-
 
 
 void WalkTheDog_TakeOutTheRecycling_TEST()
@@ -187,9 +194,14 @@ void manual()
 int main() {
 // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
-  Competition.autonomous(auton);
+  //Competition.autonomous(auton);
   Competition.drivercontrol(manual);
   while(true){
     wait(0.1, seconds);
-  }
+    if (Green())
+    {
+      Drivetrain.driveFor(5, inches);
+    }
+  } 
+  
 }
