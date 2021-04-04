@@ -143,24 +143,17 @@ bool Green()
   return isGreen;
 }
 
-void auton()
-{
-  Drivetrain.setDriveVelocity(25,percent);
-  Drivetrain.drive(forward);
-  wait(1, seconds);
-  Drivetrain.drive(reverse);
-  wait(1, seconds);
-  Drivetrain.stop();
-  //Take out recyclingstuff (here once I test code)
-
-  //Set the table
- 
-
-  //Walk the dog
-
+void SetTheTable(){
+  wait(0.001, seconds);
+  if (Green())
+  {
+    Drivetrain.driveFor(5, inches);
+  }
+  else
+  {
+    Drivetrain.stop();
+  }
 }
-
-
 void WalkTheDog_TakeOutTheRecycling_TEST()
 {
   //assume starting cube is in the middle of the eastern side of HOME, directly across recycling can (maybe one inch above recycling can sqaure?)
@@ -178,34 +171,27 @@ void WalkTheDog_TakeOutTheRecycling_TEST()
   //should complete GET HOME FOR DINNER
 }
 
-void SetTheTable()
-{
-    
+void auton(){
+  WalkTheDog_TakeOutTheRecycling_TEST();
+  while (true){
+    SetTheTable();
+  }
+  
 }
-
 void manual()
 {
   Controller1.Axis3.changed(driveRobot);
   Controller1.Axis4.changed(turnRobot);
   Controller1.Axis1.changed(useIntake);
+  while(true){
+  wait(0.01, seconds);
+  moveArm();
+  } 
 }
 
 int main() {
 // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
-  //Competition.autonomous(auton);
-  //Competition.drivercontrol(manual);
-  while(true){
-    wait(0.01, seconds);
-    if (Green())
-    {
-      Drivetrain.driveFor(5, inches);
-    }
-    else
-    {
-      Drivetrain.stop();
-    }
-    moveArm();
-  } 
-   
+  Competition.autonomous(auton);
+  Competition.drivercontrol(manual);
 }
