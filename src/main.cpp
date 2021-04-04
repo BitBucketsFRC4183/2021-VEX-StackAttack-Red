@@ -185,7 +185,6 @@ void SetTheTable()
 
 void manual()
 {
-  Controller1.Axis2.changed(moveArm);
   Controller1.Axis3.changed(driveRobot);
   Controller1.Axis4.changed(turnRobot);
   Controller1.Axis1.changed(useIntake);
@@ -206,6 +205,7 @@ int main() {
     {
       Drivetrain.stop();
     }
+    moveArm();
   } 
    
 }
