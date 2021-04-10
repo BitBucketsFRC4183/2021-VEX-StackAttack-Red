@@ -87,15 +87,15 @@ void driveRobot() {
 
 void turnRobot() {
   // If the left joystick is pushed right...
-  if (Controller1.Axis4.position(percent) >= DEADBAND_F) {
+  if (Controller1.Axis1.position(percent) >= DEADBAND_F) {
     // Turn the robot right.
-    Drivetrain.setTurnVelocity(Controller1.Axis4.position(percent) * JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
+    Drivetrain.setTurnVelocity(Controller1.Axis1.position(percent) * JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
     Drivetrain.turn(right);
 
   // If the left joystick is pushed left...
-  } else if (Controller1.Axis4.position(percent) <= -DEADBAND_F) {
+  } else if (Controller1.Axis1.position(percent) <= -DEADBAND_F) {
     // Turn the robot left.
-    Drivetrain.setTurnVelocity(Controller1.Axis4.position(percent) * -JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
+    Drivetrain.setTurnVelocity(Controller1.Axis1.position(percent) * -JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
     Drivetrain.turn(left);
 
   } else {
@@ -117,8 +117,6 @@ void moveArm() {
 }
 
 void useIntake() {
-  std::cout << Controller1.Axis1.position(percent) << std::endl;
-
   if (Controller1.ButtonL1.pressing()) {
     IntakeMotor0.setVelocity(intakeSpeed, percent);
     IntakeMotor0.spin(forward);
@@ -189,11 +187,11 @@ void auton()
 void manual()
 {
   Controller1.Axis3.changed(driveRobot);
-  Controller1.Axis4.changed(turnRobot);
-  Controller1.Axis1.changed(useIntake);
+  Controller1.Axis1.changed(turnRobot);
   while(true){
   wait(0.01, seconds);
   moveArm();
+  useIntake();
   } 
 }
 
