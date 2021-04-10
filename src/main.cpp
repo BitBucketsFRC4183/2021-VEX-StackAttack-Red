@@ -106,6 +106,8 @@ void moveArm() {
   } else if (Controller1.Axis2.position(percent) <= -DEADBAND_F) {
     ArmMotor.setVelocity(Controller1.Axis2.position(percent) * armSpeed, percent);
     ArmMotor.spin(forward);
+  } else {
+    ArmMotor.stop();
   }
 }
 
