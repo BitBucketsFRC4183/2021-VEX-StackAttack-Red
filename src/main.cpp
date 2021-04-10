@@ -100,10 +100,12 @@ void turnRobot() {
 
 void moveArm() {
   if (Controller1.Axis2.position(percent) >= DEADBAND_F) {
-    ArmMotor.spinToPosition(ArmMotor.position(degrees) + (Controller1.Axis2.position(percent) * armSpeed), degrees, false);
+    ArmMotor.setVelocity(Controller1.Axis2.position(percent) * armSpeed, percent);
+    ArmMotor.spin(forward);
 
   } else if (Controller1.Axis2.position(percent) <= -DEADBAND_F) {
-    ArmMotor.spinToPosition(ArmMotor.position(degrees) + (Controller1.Axis2.position(percent) *  armSpeed), degrees, false);
+    ArmMotor.setVelocity(Controller1.Axis2.position(percent) * armSpeed, percent);
+    ArmMotor.spin(forward);
   }
 }
 
