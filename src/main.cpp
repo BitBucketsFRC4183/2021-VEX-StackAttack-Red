@@ -147,37 +147,42 @@ void SetTheTable(){
   wait(0.001, seconds);
   if (Green())
   {
-    Drivetrain.driveFor(5, inches);
+    Drivetrain.driveFor(48, inches);
+    Drivetrain.driveFor(reverse, 20, inches);
+    Drivetrain.turnFor(right, 90, degrees);
+    Drivetrain.driveFor(24, inches);
   }
   else
   {
-    Drivetrain.stop();
+    Drivetrain.driveFor(reverse, 6.5, inches);
+    Drivetrain.turnFor(right, 90, degrees);
+    Drivetrain.driveFor(48,inches);
+    Drivetrain.driveFor(reverse, 20, inches);
+    Drivetrain.turnFor(right, 90, degrees);
+    Drivetrain.driveFor(30.5, inches);
   }
 }
-void WalkTheDog_TakeOutTheRecycling_TEST()
+void auton()
 {
+  std::cout<<"Hi"<<std::endl;
   //assume starting cube is in the middle of the eastern side of HOME, directly across recycling can (maybe one inch above recycling can sqaure?)
   //assume robot is directly to the west of the starting cube (and facing starting cube)
   
   Drivetrain.driveFor(forward, 40, inches);
   //should get starting cube in recycling can, completing TAKE OUT THE RECYCLING
+  IntakeMotor0.spinFor(reverse, 5, seconds);
+  IntakeMotor1.spinFor(forward, 5, seconds);
   Drivetrain.turnFor(right,90,degrees);
   Drivetrain.driveFor(forward, 24, inches);
-  Drivetrain.turnFor(right, 90, degrees);
-  Drivetrain.driveFor(forward, 48, inches);
-  //set the table here, need vision sensors planning to do some if-statements if possible
-  Drivetrain.turnFor(right, 90, degrees);
-  Drivetrain.driveFor(forward, 12, inches);
-  //should complete GET HOME FOR DINNER
-}
-
-void auton(){
-  WalkTheDog_TakeOutTheRecycling_TEST();
   while (true){
     SetTheTable();
   }
-  
+  // Drivetrain.turnFor(right, 90, degrees);
+  // Drivetrain.driveFor(forward, 48, inches);
+  //set the table here, need vision sensors planning to do some if-statements if possible
+  //should complete GET HOME FOR DINNER
 }
+
 void manual()
 {
   Controller1.Axis3.changed(driveRobot);
@@ -194,4 +199,7 @@ int main() {
   vexcodeInit();
   Competition.autonomous(auton);
   Competition.drivercontrol(manual);
+  while (true){
+    wait(1, seconds);
+  }
 }
