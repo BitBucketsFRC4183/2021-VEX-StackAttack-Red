@@ -59,7 +59,12 @@ float DEADBAND_F = 10.0f;
 
 // The value the joystick outputs is multiplied by this number to ensure it is on a scale of 0-100.
 float JOYSTICK_PERCENTAGE_CONVERSION_F = 1.0f;
-float armSpeed = 0.5f;
+
+// The speed of the arm's rotation in percent
+float armSpeed = 30.0f;
+
+// The speed of the intake motors in percent
+float intakeSpeed = 100.0f;
 
 
 void driveRobot() {
@@ -99,13 +104,13 @@ void turnRobot() {
 }
 
 void moveArm() {
-  if (Controller1.Axis2.position(percent) >= DEADBAND_F) {
-    ArmMotor.setVelocity(Controller1.Axis2.position(percent) * armSpeed, percent);
+  if (Controller1.ButtonL2.pressing()) {
+    ArmMotor.setVelocity(armSpeed, percent);
     ArmMotor.spin(forward);
 
-  } else if (Controller1.Axis2.position(percent) <= -DEADBAND_F) {
-    ArmMotor.setVelocity(Controller1.Axis2.position(percent) * armSpeed, percent);
-    ArmMotor.spin(forward);
+  } else if (Controller1.ButtonR2.pressing()) {
+    ArmMotor.setVelocity(armSpeed, percent);
+    ArmMotor.spin(reverse);
   } else {
     ArmMotor.stop();
   }
@@ -114,27 +119,21 @@ void moveArm() {
 void useIntake() {
   std::cout << Controller1.Axis1.position(percent) << std::endl;
 
-  if (Controller1.Axis1.position(percent) >= DEADBAND_F) {
-    std::cout << "axis1 > deadband" << std::endl;
-
-    IntakeMotor0.setVelocity(Controller1.Axis1.position(percent) * JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
+  if (Controller1.ButtonL1.pressing()) {
+    IntakeMotor0.setVelocity(intakeSpeed, percent);
     IntakeMotor0.spin(forward);
 
-    IntakeMotor1.setVelocity(Controller1.Axis1.position(percent) * JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
+    IntakeMotor1.setVelocity(intakeSpeed, percent);
     IntakeMotor1.spin(reverse);
 
-  } else if (Controller1.Axis1.position(percent) <= -DEADBAND_F) {
-    std::cout << "axis1 < deadband" << std::endl;
-
-    IntakeMotor0.setVelocity(Controller1.Axis1.position(percent) * -JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
+  } else if (Controller1.ButtonR1.pressing()) {
+    IntakeMotor0.setVelocity(intakeSpeed, percent);
     IntakeMotor0.spin(reverse);
 
-    IntakeMotor1.setVelocity(Controller1.Axis1.position(percent) * -JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
+    IntakeMotor1.setVelocity(intakeSpeed, percent);
     IntakeMotor1.spin(forward);
 
   } else {
-    std::cout << "axis1 is within deadband" << std::endl;
-
     IntakeMotor0.stop();
     IntakeMotor1.stop();
   }
