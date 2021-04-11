@@ -175,7 +175,7 @@ void auton()
   IntakeMotor0.spinFor(reverse, 5, seconds);
   IntakeMotor1.spinFor(forward, 5, seconds);
   Drivetrain.turnFor(right,90,degrees);
-  Drivetrain.driveFor(forward, 24, inches);
+  Drivetrain.driveFor(forward, 28, inches);
   Drivetrain.turnFor(right, 90, degrees);
   Drivetrain.driveFor(forward, 48, inches);
   //SetTheTable();
