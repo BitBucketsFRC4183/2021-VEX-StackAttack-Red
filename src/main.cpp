@@ -112,7 +112,7 @@ void moveArm() {
     ArmMotor.setVelocity(armSpeed, percent);
     ArmMotor.spin(reverse);
   } else {
-    ArmMotor.stop();
+    ArmMotor.stop(brake);
   }
 }
 
