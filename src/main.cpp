@@ -149,7 +149,7 @@ void SetTheTable(){
   wait(0.001, seconds);
   if (Green())
   {
-    Drivetrain.driveFor(48, inches);
+    //Drivetrain.driveFor(48, inches);
     Drivetrain.driveFor(reverse, 20, inches);
     Drivetrain.turnFor(right, 90, degrees);
     Drivetrain.driveFor(24, inches);
@@ -175,10 +175,10 @@ void auton()
   IntakeMotor0.spinFor(reverse, 5, seconds);
   IntakeMotor1.spinFor(forward, 5, seconds);
   Drivetrain.turnFor(right,90,degrees);
-  Drivetrain.driveFor(forward, 24, inches);
+  Drivetrain.driveFor(forward, 18, inches);
   Drivetrain.turnFor(right, 90, degrees);
   Drivetrain.driveFor(forward, 48, inches);
-  SetTheTable();
+  //SetTheTable();
   //should complete GET HOME FOR DINNER
 }
 
