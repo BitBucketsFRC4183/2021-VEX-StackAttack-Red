@@ -105,14 +105,18 @@ void turnRobot() {
 
 void moveArm() {
   if (Controller1.ButtonL2.pressing()) {
+    std::cout<<"Spin arm forward"<<std::endl;
+
     ArmMotor.setVelocity(armSpeed, percent);
     ArmMotor.spin(forward);
 
   } else if (Controller1.ButtonR2.pressing()) {
+    std::cout<<"Spin arm backward"<<std::endl;
     ArmMotor.setVelocity(armSpeed, percent);
     ArmMotor.spin(reverse);
   } else {
-    ArmMotor.stop(brake);
+    std::cout<<"Stop arm"<<std::endl;
+    ArmMotor.stop(hold);
   }
 }
 
