@@ -59,7 +59,12 @@ float DEADBAND_F = 10.0f;
 
 // The value the joystick outputs is multiplied by this number to ensure it is on a scale of 0-100.
 float JOYSTICK_PERCENTAGE_CONVERSION_F = 1.0f;
-float armSpeed = 0.5f;
+
+// The speed of the arm's rotation in percent
+float armSpeed = 30.0f;
+
+// The speed of the intake motors in percent
+float intakeSpeed = 100.0f;
 
 
 void driveRobot() {
@@ -99,38 +104,35 @@ void turnRobot() {
 }
 
 void moveArm() {
-  if (Controller1.Axis2.position(percent) >= DEADBAND_F) {
-    ArmMotor.spinToPosition(ArmMotor.position(degrees) + (Controller1.Axis2.position(percent) * armSpeed), degrees, false);
+  if (Controller1.ButtonL2.pressing()) {
 
-  } else if (Controller1.Axis2.position(percent) <= -DEADBAND_F) {
-    ArmMotor.spinToPosition(ArmMotor.position(degrees) + (Controller1.Axis2.position(percent) *  armSpeed), degrees, false);
+    ArmMotor.setVelocity(armSpeed, percent);
+    ArmMotor.spin(forward);
+
+  } else if (Controller1.ButtonR2.pressing()) {
+    ArmMotor.setVelocity(armSpeed, percent);
+    ArmMotor.spin(reverse);
+  } else {
+    ArmMotor.stop(hold);
   }
 }
 
 void useIntake() {
-  std::cout << Controller1.Axis1.position(percent) << std::endl;
-
-  if (Controller1.Axis1.position(percent) >= DEADBAND_F) {
-    std::cout << "axis1 > deadband" << std::endl;
-
-    IntakeMotor0.setVelocity(Controller1.Axis1.position(percent) * JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
+  if (Controller1.ButtonL1.pressing()) {
+    IntakeMotor0.setVelocity(intakeSpeed, percent);
     IntakeMotor0.spin(forward);
 
-    IntakeMotor1.setVelocity(Controller1.Axis1.position(percent) * JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
+    IntakeMotor1.setVelocity(intakeSpeed, percent);
     IntakeMotor1.spin(reverse);
 
-  } else if (Controller1.Axis1.position(percent) <= -DEADBAND_F) {
-    std::cout << "axis1 < deadband" << std::endl;
-
-    IntakeMotor0.setVelocity(Controller1.Axis1.position(percent) * -JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
+  } else if (Controller1.ButtonR1.pressing()) {
+    IntakeMotor0.setVelocity(intakeSpeed, percent);
     IntakeMotor0.spin(reverse);
 
-    IntakeMotor1.setVelocity(Controller1.Axis1.position(percent) * -JOYSTICK_PERCENTAGE_CONVERSION_F, percent);
+    IntakeMotor1.setVelocity(intakeSpeed, percent);
     IntakeMotor1.spin(forward);
 
   } else {
-    std::cout << "axis1 is within deadband" << std::endl;
-
     IntakeMotor0.stop();
     IntakeMotor1.stop();
   }
@@ -147,7 +149,7 @@ void SetTheTable(){
   wait(0.001, seconds);
   if (Green())
   {
-    Drivetrain.driveFor(48, inches);
+    //Drivetrain.driveFor(48, inches);
     Drivetrain.driveFor(reverse, 20, inches);
     Drivetrain.turnFor(right, 90, degrees);
     Drivetrain.driveFor(24, inches);
@@ -173,13 +175,10 @@ void auton()
   IntakeMotor0.spinFor(reverse, 2, seconds);
   Drivetrain.driveFor(reverse, 5, inches);
   Drivetrain.turnFor(right,90,degrees);
-  Drivetrain.driveFor(forward, 24, inches);
-  while (true){
-    SetTheTable();
-  }
-  // Drivetrain.turnFor(right, 90, degrees);
-  // Drivetrain.driveFor(forward, 48, inches);
-  //set the table here, need vision sensors planning to do some if-statements if possible
+  Drivetrain.driveFor(forward, 28, inches);
+  Drivetrain.turnFor(right, 90, degrees);
+  Drivetrain.driveFor(forward, 38, inches);
+  //SetTheTable();
   //should complete GET HOME FOR DINNER
 }
 
@@ -187,18 +186,18 @@ void manual()
 {
   Controller1.Axis3.changed(driveRobot);
   Controller1.Axis4.changed(turnRobot);
-  Controller1.Axis1.changed(useIntake);
   while(true){
   wait(0.01, seconds);
   moveArm();
+  useIntake();
   } 
 }
 
 int main() {
 // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
-  Competition.autonomous(auton);
-  Competition.drivercontrol(manual);
+  auton();
+  manual();
   while (true){
     wait(1, seconds);
   }
