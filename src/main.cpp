@@ -177,7 +177,7 @@ void auton()
   Drivetrain.turnFor(right,90,degrees);
   Drivetrain.driveFor(forward, 28, inches);
   Drivetrain.turnFor(right, 90, degrees);
-  Drivetrain.driveFor(forward, 48, inches);
+  Drivetrain.driveFor(forward, 38, inches);
   //SetTheTable();
   //should complete GET HOME FOR DINNER
 }
