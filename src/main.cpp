@@ -158,10 +158,9 @@ void SetTheTable(){
   {
     Drivetrain.driveFor(reverse, 6.5, inches);
     Drivetrain.turnFor(right, 90, degrees);
-    Drivetrain.driveFor(48,inches);
-    Drivetrain.driveFor(reverse, 20, inches);
-    Drivetrain.turnFor(right, 90, degrees);
-    Drivetrain.driveFor(30.5, inches);
+    Drivetrain.driveFor(3 ,inches);
+    Drivetrain.turnFor(left, 90, degrees);
+    Drivetrain.driveFor(12, inches);
   }
 }
 void auton()
@@ -173,12 +172,12 @@ void auton()
   Drivetrain.driveFor(forward, 40, inches);
   //should get starting cube in recycling can, completing TAKE OUT THE RECYCLING
   IntakeMotor0.setVelocity(100, percent);
-  IntakeMotor0.spinFor(forward, 2, seconds);
+  IntakeMotor0.spinFor(forward, 1, seconds);
   Drivetrain.driveFor(reverse, 5, inches);
   Drivetrain.turnFor(right,90,degrees);
   Drivetrain.driveFor(forward, 28, inches);
   Drivetrain.turnFor(right, 90, degrees);
-  Drivetrain.setDriveVelocity(80, percent);
+  Drivetrain.setDriveVelocity(70, percent);
   Drivetrain.driveFor(38, inches);
   while (true){
     SetTheTable();
