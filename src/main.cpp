@@ -149,7 +149,7 @@ void SetTheTable(){
   wait(0.001, seconds);
   if (Green())
   {
-    //Drivetrain.driveFor(48, inches);
+    Drivetrain.driveFor(24, inches);
     Drivetrain.driveFor(reverse, 20, inches);
     Drivetrain.turnFor(right, 90, degrees);
     Drivetrain.driveFor(24, inches);
@@ -177,7 +177,8 @@ void auton()
   Drivetrain.turnFor(right,90,degrees);
   Drivetrain.driveFor(forward, 28, inches);
   Drivetrain.turnFor(right, 90, degrees);
-  Drivetrain.driveFor(24, inches);
+  Drivetrain.setDriveVelocity(100, percent);
+  Drivetrain.driveFor(38, inches);
   while (true){
     SetTheTable();
   }
