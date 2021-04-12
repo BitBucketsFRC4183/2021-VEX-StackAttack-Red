@@ -170,8 +170,8 @@ void auton()
   
   Drivetrain.driveFor(forward, 40, inches);
   //should get starting cube in recycling can, completing TAKE OUT THE RECYCLING
-  IntakeMotor0.spinFor(reverse, 5, seconds);
-  IntakeMotor1.spinFor(forward, 5, seconds);
+  IntakeMotor0.spinFor(reverse, 2, seconds);
+  Drivetrain.driveFor(reverse, 5, inches);
   Drivetrain.turnFor(right,90,degrees);
   Drivetrain.driveFor(forward, 24, inches);
   while (true){
