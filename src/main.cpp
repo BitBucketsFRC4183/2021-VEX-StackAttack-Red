@@ -178,7 +178,7 @@ void auton()
   Drivetrain.driveFor(forward, 28, inches);
   Drivetrain.turnFor(right, 90, degrees);
   Drivetrain.driveFor(forward, 38, inches);
-  //SetTheTable();
+  SetTheTable();
   //should complete GET HOME FOR DINNER
 }
 
@@ -196,8 +196,8 @@ void manual()
 int main() {
 // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
-  auton();
-  manual();
+  Competition.autonomous(auton);
+  Competition.drivercontrol(manual);
   while (true){
     wait(1, seconds);
   }
