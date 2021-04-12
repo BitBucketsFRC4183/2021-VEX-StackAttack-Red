@@ -177,7 +177,6 @@ void auton()
   Drivetrain.turnFor(right,90,degrees);
   Drivetrain.driveFor(forward, 28, inches);
   Drivetrain.turnFor(right, 90, degrees);
-  Drivetrain.driveFor(forward, 38, inches);
   while (true){
     SetTheTable();
   }
