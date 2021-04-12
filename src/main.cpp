@@ -177,7 +177,7 @@ void auton()
   Drivetrain.turnFor(right,90,degrees);
   Drivetrain.driveFor(forward, 28, inches);
   Drivetrain.turnFor(right, 90, degrees);
-  Drivetrain.setDriveVelocity(100, percent);
+  Drivetrain.setDriveVelocity(80, percent);
   Drivetrain.driveFor(38, inches);
   while (true){
     SetTheTable();
