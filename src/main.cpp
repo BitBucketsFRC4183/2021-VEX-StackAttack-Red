@@ -156,11 +156,11 @@ void SetTheTable(){
   }
   else
   {
-    Drivetrain.driveFor(reverse, 6.5, inches);
-    Drivetrain.turnFor(right, 90, degrees);
-    Drivetrain.driveFor(3 ,inches);
-    Drivetrain.turnFor(left, 90, degrees);
+    Drivetrain.turnFor(left, 60, degrees);
     Drivetrain.driveFor(12, inches);
+    Drivetrain.driveFor(reverse, 14, inches);
+    Drivetrain.turnFor(right, 150, degrees);
+    Drivetrain.driveFor(20, inches);
   }
 }
 void auton()
