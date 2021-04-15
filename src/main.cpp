@@ -174,7 +174,7 @@ void auton()
   //assume starting cube is in the middle of the eastern side of HOME, directly across recycling can (maybe one inch above recycling can sqaure?)
   //assume robot is directly to the west of the starting cube (and facing starting cube)
   
-  Drivetrain.driveFor(forward, 40, inches);
+  Drivetrain.driveFor(forward, 55, inches);
   //should get starting cube in recycling can, completing TAKE OUT THE RECYCLING
   IntakeMotor0.setVelocity(100, percent);
   IntakeMotor0.spinFor(forward, 1, seconds);
