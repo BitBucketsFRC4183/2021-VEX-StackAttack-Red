@@ -66,6 +66,7 @@ float armSpeed = 30.0f;
 // The speed of the intake motors in percent
 float intakeSpeed = 100.0f;
 
+double const GREEN_CUBE_THRESHOLD = 157.5;
 
 void driveRobot() {
   // If the left joystick is pushed forward...
@@ -138,22 +139,25 @@ void useIntake() {
   }
 }
 
-bool Green()
+bool GreenOnRight()
 {
   Vision13.takeSnapshot(Vision13__SIG_1);
-  bool isGreen = Vision13.objects[0].exists;
-  return isGreen;
+  // bool isGreen = Vision13.objects[0].exists;
+  double position = Vision13.objects[0].centerX;
+  return Vision13.objects[0].exists && position > GREEN_CUBE_THRESHOLD;
 }
 
 void SetTheTable(){
   wait(0.001, seconds);
-  if (Green())
+  //Green cube is on the right
+  if (GreenOnRight())
   {
     Drivetrain.driveFor(24, inches);
     Drivetrain.driveFor(reverse, 20, inches);
     Drivetrain.turnFor(right, 90, degrees);
     Drivetrain.driveFor(24, inches);
   }
+  //Green cube is on the left
   else
   {
     Drivetrain.turnFor(left, 60, degrees);
