@@ -173,11 +173,12 @@ void auton()
   std::cout<<"Hi"<<std::endl;
   //assume starting cube is in the middle of the eastern side of HOME, directly across recycling can (maybe one inch above recycling can sqaure?)
   //assume robot is directly to the west of the starting cube (and facing starting cube)
-  
-  Drivetrain.driveFor(forward, 55, inches);
+  Drivetrain.setDriveVelocity(80, percent);
+  Drivetrain.driveFor(forward, 35, inches);
   //should get starting cube in recycling can, completing TAKE OUT THE RECYCLING
   IntakeMotor0.setVelocity(100, percent);
   IntakeMotor0.spinFor(forward, 1, seconds);
+  Drivetrain.setDriveVelocity(50, percent);
   Drivetrain.driveFor(reverse, 5, inches);
   Drivetrain.turnFor(right,90,degrees);
   Drivetrain.driveFor(forward, 28, inches);
