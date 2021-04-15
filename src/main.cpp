@@ -152,18 +152,19 @@ void SetTheTable(){
   //Green cube is on the right
   if (GreenOnRight())
   {
+    Drivetrain.turnFor(right, 15, degrees);
     Drivetrain.driveFor(24, inches);
-    Drivetrain.driveFor(reverse, 20, inches);
-    Drivetrain.turnFor(right, 90, degrees);
-    Drivetrain.driveFor(24, inches);
+    Drivetrain.driveFor(reverse, 24, inches);
+    Drivetrain.turnFor(right, 75, degrees);
+    Drivetrain.driveFor(20, inches);
   }
   //Green cube is on the left
   else
   {
-    Drivetrain.turnFor(left, 60, degrees);
-    Drivetrain.driveFor(12, inches);
-    Drivetrain.driveFor(reverse, 14, inches);
-    Drivetrain.turnFor(right, 150, degrees);
+    Drivetrain.turnFor(left, 15, degrees);
+    Drivetrain.driveFor(24, inches);
+    Drivetrain.driveFor(reverse, 24, inches);
+    Drivetrain.turnFor(right, 105, degrees);
     Drivetrain.driveFor(20, inches);
   }
 }
