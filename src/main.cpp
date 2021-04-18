@@ -139,25 +139,40 @@ void useIntake() {
   }
 }
 
-// bool GreenOnRight()
-// {
-//   Vision13.takeSnapshot(Vision13__SIG_1);
-//   // bool isGreen = Vision13.objects[0].exists;
-//   double position = Vision13.objects[0].centerX;
-//   return Vision13.objects[0].exists && position > VISION_OUTPUT_CENTER;
-// }
-
-void SetTheTable(){
-  wait(0.001, seconds);
+bool GreenOnRight()
+{
   Vision13.takeSnapshot(Vision13__SIG_1);
-  double error = Vision13.objects[0].centerX - VISION_OUTPUT_CENTER;
-  error*=0.193;
-  //Green cube is on the right
-  Drivetrain.turnFor(error, degrees);
-  Drivetrain.driveFor(24, inches);
-  Drivetrain.driveFor(reverse, 24, inches);
-  Drivetrain.turnFor(right, 90-error, degrees);
-  Drivetrain.driveFor(20, inches);
+  bool isGreen = Vision13.objects[0].exists;
+  return isGreen;
+}
+
+bool SetTheTable(){
+  wait(0.001, seconds);
+  if (GreenOnRight()){
+    Drivetrain.driveFor(forward, 20, inches);
+    Drivetrain.driveFor(reverse, 20, inches);
+    Drivetrain.turnFor(right, 90, degrees);
+    Drivetrain.driveFor(forward, 10, inches);
+    return false;
+  }
+  else if (GreenOnRight() == false){
+    Drivetrain.turnFor(left, 40, degrees);
+    Drivetrain.driveFor(forward, 20, inches);
+    Drivetrain.driveFor(reverse, 20, inches);
+    Drivetrain.turnFor(right, 130, degrees);
+    Drivetrain.driveFor(forward, 10, inches);
+    return false;
+  }
+  return true;
+  // Vision13.takeSnapshot(Vision13__SIG_1);
+  // double error = Vision13.objects[0].centerX - VISION_OUTPUT_CENTER;
+  // error*=0.193;
+  // //Green cube is on the right
+  // Drivetrain.turnFor(error, degrees);
+  // Drivetrain.driveFor(24, inches);
+  // Drivetrain.driveFor(reverse, 24, inches);
+  // Drivetrain.turnFor(right, 90-error, degrees);
+  // Drivetrain.driveFor(20, inches);
 }
 
 void Contingency(){
@@ -186,7 +201,16 @@ void auton()
   Drivetrain.driveFor(24, inches);
   //if we don't use vision:
   // Contingency();
-  SetTheTable();
+  bool check = true;
+  while (check){
+    SetTheTable();
+    if (SetTheTable() == true){
+      check = true;
+    }
+    else if (SetTheTable() == false){
+      check = false;
+    }
+  }
   //should complete GET HOME FOR DINNER
 }
 
