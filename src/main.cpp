@@ -178,7 +178,8 @@ void useIntake() {
 void Contingency(){
   wait(0.001, seconds);
   Drivetrain.turnFor(right, 90, degrees);
-  Drivetrain.driveFor(10, inches);
+  Drivetrain.setDriveVelocity(60, percent);
+  Drivetrain.driveFor(20, inches);
 }
 void auton()
 {
@@ -198,7 +199,7 @@ void auton()
   Drivetrain.driveFor(forward, 28, inches);
   Drivetrain.turnFor(right, 90, degrees);
   //originally it's 24inches, 28 for our contingency plan
-  Drivetrain.driveFor(28, inches);
+  Drivetrain.driveFor(32, inches);
   //if we don't use vision:
   Contingency();
   // bool check = true;
