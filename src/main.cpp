@@ -66,7 +66,8 @@ float armSpeed = 30.0f;
 // The speed of the intake motors in percent
 float intakeSpeed = 100.0f;
 
-double const VISION_OUTPUT_CENTER = 158;
+//158
+double const VISION_OUTPUT_CENTER = 120;
 
 void driveRobot() {
   // If the left joystick is pushed forward...
