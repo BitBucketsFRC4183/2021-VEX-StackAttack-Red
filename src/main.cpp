@@ -151,7 +151,8 @@ void useIntake() {
 void SetTheTable(){
   wait(0.001, seconds);
   Vision13.takeSnapshot(Vision13__SIG_1);
-  double error = Vision13.objects[0].centerX - VISION_OUTPUT_CENTER;
+  //- VISION_OUTPUT_CENTER
+  double error = Vision13.objects[0].centerX ;
   error*=0.193;
   //Green cube is on the right
   Drivetrain.turnFor(error, degrees);
