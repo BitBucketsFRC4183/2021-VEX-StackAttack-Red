@@ -153,7 +153,7 @@ void SetTheTable(){
   double error = Vision13.objects[0].centerX - VISION_OUTPUT_CENTER;
   error*=0.193;
   //Green cube is on the right
-  Drivetrain.turnFor(right, error, degrees);
+  Drivetrain.turnFor(left, error, degrees);
   Drivetrain.driveFor(24, inches);
   Drivetrain.driveFor(reverse, 24, inches);
   Drivetrain.turnFor(right, 90-error, degrees);
