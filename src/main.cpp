@@ -159,6 +159,12 @@ void SetTheTable(){
   Drivetrain.turnFor(right, 90-error, degrees);
   Drivetrain.driveFor(20, inches);
 }
+
+void Contingency(){
+  wait(0.001, seconds);
+  Drivetrain.turnFor(right, 90, degrees);
+  Drivetrain.driveFor(10, inches);
+}
 void auton()
 {
   std::cout<<"Hi"<<std::endl;
@@ -176,10 +182,9 @@ void auton()
   Drivetrain.turnFor(right,90,degrees);
   Drivetrain.driveFor(forward, 28, inches);
   Drivetrain.turnFor(right, 90, degrees);
-  Drivetrain.driveFor(24, inches);
+  Drivetrain.driveFor(28, inches);
+  Contingency();
   //if we don't use vision:
-  Drivetrain.turnFor(right, 90, degrees);
-  Drivetrain.driveFor(20, inches);
   //////////////////////////////////////////////SetTheTable();
   //should complete GET HOME FOR DINNER
 }
