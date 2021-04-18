@@ -66,8 +66,7 @@ float armSpeed = 30.0f;
 // The speed of the intake motors in percent
 float intakeSpeed = 100.0f;
 
-//158
-double const VISION_OUTPUT_CENTER = 90;
+double const VISION_OUTPUT_CENTER = 158;
 
 void driveRobot() {
   // If the left joystick is pushed forward...
@@ -151,8 +150,7 @@ void useIntake() {
 void SetTheTable(){
   wait(0.001, seconds);
   Vision13.takeSnapshot(Vision13__SIG_1);
-  //- VISION_OUTPUT_CENTER
-  double error = Vision13.objects[0].centerX ;
+  double error = Vision13.objects[0].centerX - VISION_OUTPUT_CENTER;
   error*=0.193;
   //Green cube is on the right
   Drivetrain.turnFor(error, degrees);
