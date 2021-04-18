@@ -166,16 +166,21 @@ void auton()
   //assume robot is directly to the west of the starting cube (and facing starting cube)
   // Drivetrain.setDriveVelocity(60, percent);
   Drivetrain.driveFor(forward, 27, inches);
-  // Drivetrain.setDriveVelocity(50, percent);
-  //should get starting cube in recycling can, completing TAKE OUT THE RECYCLING
   IntakeMotor0.setVelocity(100, percent);
   IntakeMotor0.spinFor(forward, 1, seconds);
+  // Drivetrain.setDriveVelocity(50, percent);
+  //should get starting cube in recycling can, completing TAKE OUT THE RECYCLING
+  // IntakeMotor0.setVelocity(100, percent);
+  // IntakeMotor0.spinFor(forward, 1, seconds);
   Drivetrain.driveFor(reverse, 5, inches);
   Drivetrain.turnFor(right,90,degrees);
   Drivetrain.driveFor(forward, 28, inches);
   Drivetrain.turnFor(right, 90, degrees);
   Drivetrain.driveFor(24, inches);
-  SetTheTable();
+  //if we don't use vision:
+  Drivetrain.turnFor(right, 90, degrees);
+  Drivetrain.driveFor(20, inches);
+  //////////////////////////////////////////////SetTheTable();
   //should complete GET HOME FOR DINNER
 }
 
