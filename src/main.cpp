@@ -147,7 +147,7 @@ bool GreenOnRight()
 }
 
 bool SetTheTable(){
-  wait(0.001, seconds);
+  wait(0.1, seconds);
   if (GreenOnRight()){
     Drivetrain.driveFor(forward, 20, inches);
     Drivetrain.driveFor(reverse, 20, inches);
