@@ -139,41 +139,41 @@ void useIntake() {
   }
 }
 
-bool GreenOnRight()
-{
-  Vision13.takeSnapshot(Vision13__SIG_1);
-  bool isGreen = Vision13.objects[0].exists;
-  return isGreen;
-}
+// bool GreenOnRight()
+// {
+//   Vision13.takeSnapshot(Vision13__SIG_1);
+//   bool isGreen = Vision13.objects[0].exists;
+//   return isGreen;
+// }
 
-bool SetTheTable(){
-  wait(0.1, seconds);
-  if (GreenOnRight()){
-    Drivetrain.driveFor(forward, 20, inches);
-    Drivetrain.driveFor(reverse, 20, inches);
-    Drivetrain.turnFor(right, 90, degrees);
-    Drivetrain.driveFor(forward, 10, inches);
-    return false;
-  }
-  else if (GreenOnRight() == false){
-    Drivetrain.turnFor(left, 40, degrees);
-    Drivetrain.driveFor(forward, 20, inches);
-    Drivetrain.driveFor(reverse, 20, inches);
-    Drivetrain.turnFor(right, 130, degrees);
-    Drivetrain.driveFor(forward, 10, inches);
-    return false;
-  }
-  return true;
-  // Vision13.takeSnapshot(Vision13__SIG_1);
-  // double error = Vision13.objects[0].centerX - VISION_OUTPUT_CENTER;
-  // error*=0.193;
-  // //Green cube is on the right
-  // Drivetrain.turnFor(error, degrees);
-  // Drivetrain.driveFor(24, inches);
-  // Drivetrain.driveFor(reverse, 24, inches);
-  // Drivetrain.turnFor(right, 90-error, degrees);
-  // Drivetrain.driveFor(20, inches);
-}
+// bool SetTheTable(){
+//   wait(0.1, seconds);
+//   if (GreenOnRight()){
+//     Drivetrain.driveFor(forward, 20, inches);
+//     Drivetrain.driveFor(reverse, 20, inches);
+//     Drivetrain.turnFor(right, 90, degrees);
+//     Drivetrain.driveFor(forward, 10, inches);
+//     return false;
+//   }
+//   else if (GreenOnRight() == false){
+//     Drivetrain.turnFor(left, 40, degrees);
+//     Drivetrain.driveFor(forward, 20, inches);
+//     Drivetrain.driveFor(reverse, 20, inches);
+//     Drivetrain.turnFor(right, 130, degrees);
+//     Drivetrain.driveFor(forward, 10, inches);
+//     return false;
+//   }
+//   return true;
+//   // Vision13.takeSnapshot(Vision13__SIG_1);
+//   // double error = Vision13.objects[0].centerX - VISION_OUTPUT_CENTER;
+//   // error*=0.193;
+//   // //Green cube is on the right
+//   // Drivetrain.turnFor(error, degrees);
+//   // Drivetrain.driveFor(24, inches);
+//   // Drivetrain.driveFor(reverse, 24, inches);
+//   // Drivetrain.turnFor(right, 90-error, degrees);
+//   // Drivetrain.driveFor(20, inches);
+// }
 
 void Contingency(){
   wait(0.001, seconds);
