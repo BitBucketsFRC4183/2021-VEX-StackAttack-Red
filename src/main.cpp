@@ -182,10 +182,11 @@ void auton()
   Drivetrain.turnFor(right,90,degrees);
   Drivetrain.driveFor(forward, 28, inches);
   Drivetrain.turnFor(right, 90, degrees);
-  Drivetrain.driveFor(28, inches);
-  Contingency();
+  //originally it's 24inches, 28 for our contingency plan
+  Drivetrain.driveFor(24, inches);
   //if we don't use vision:
-  //////////////////////////////////////////////SetTheTable();
+  // Contingency();
+  SetTheTable();
   //should complete GET HOME FOR DINNER
 }
 
